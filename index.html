@@ -85,8 +85,8 @@
         <div class="container">
             <h1>HINTELLECT</h1>
             <p>AI That Reviews, You That Thinks!</p>
-            <form class="d-flex flex-column align-items-center" onsubmit="redirectToCards(event)">
-                <textarea class="form-control input-box mb-3" placeholder="Enter your code here..."></textarea>
+            <form action="/main" method="POST" class="d-flex flex-column align-items-center" onsubmit="redirectToCards(event)">
+                <textarea id="codeInput" class="form-control input-box mb-3" placeholder="Enter your code here..."></textarea>
                 <button type="submit" class="btn btn-light">Submit</button>
             </form>
         </div>
@@ -117,5 +117,41 @@
             </div>
         </div>
     </section>
+    <script>
+        function submitCode(event) {
+            event.preventDefault(); // Prevents page reload
+    
+            const codeInput = document.querySelector(".input-box").value;
+    
+            if (!codeInput.trim()) {
+                alert("Please enter some code before submitting!");
+                return;
+            }
+    
+            fetch("/review", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: codeInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.feedback) {
+                    const feedback = encodeURIComponent(JSON.stringify(data.feedback));
+                    window.location.href = `/main.html?feedback=${feedback}`; // Redirect to review page
+                } else {
+                    alert("Error: No feedback received from the server.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Something went wrong. Please try again.");
+            });
+        }
+    
+        document.querySelector("form").addEventListener("submit", submitCode);
+    </script>
+
 </body>
 </html>
