@@ -3,7 +3,7 @@ import google.generativeai as ai
 
 app = Flask(__name__)
 
-ai.configure(api_key="AIzaSyAaPxa09mmfgTA8Fl6DhKD5TWVpvR57xhk")
+ai.configure(api_key="")
 
 
 @app.route('/review', method=['POST'])
