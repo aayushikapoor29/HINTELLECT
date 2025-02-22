@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import google.generativeai as ai
+<<<<<<< HEAD
 
 app = Flask(__name__)
 
@@ -11,6 +12,21 @@ def review(code):
 
     data = request.get_json() 
     code = data.get("code", "")
+=======
+from flask_cors import CORS
+
+
+app = Flask(__name__)
+CORS(app)
+
+ai.configure(api_key="AIzaSyAaPxa09mmfgTA8Fl6DhKD5TWVpvR57xhk")
+
+
+@app.route('/main', methods=['POST'])
+def review_code():
+    data = request.get_json() 
+    code = data.get('code')
+>>>>>>> 5079b92 (Sync local repo with github repo)
 
     if not code:
         return jsonify({"error": "No code provided"}), 400
@@ -36,9 +52,19 @@ def review(code):
     model = ai.GenerativeModel("gemini-pro")
     try:
         response = model.generate_content(prompt)
+<<<<<<< HEAD
         return jsonify({"review": response.result})
     except Exception as e:
         return jsonify({"error":str(e)}), 500
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5004, debug=True)
+=======
+        return jsonify({"review": response.text})
+    except Exception as e:
+        print("Error occurred:", str(e)) 
+        return jsonify({"error":str(e)}), 500
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5004, debug=True)
+>>>>>>> 5079b92 (Sync local repo with github repo)
