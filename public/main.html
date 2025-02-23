@@ -57,6 +57,8 @@
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #b57edc, #e0b0ff);
+            animation: fadeInOut 0.5s ease-in-out;
         }
         .card-title {
             font-size: 1.5em;
@@ -102,11 +104,22 @@
             color: white;
             background-color: #6b1fb1;
         }
+        .stars {
+            font-size: 2.5rem;  /* Adjust star size */
+            color: gold; /* Gold stars */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Slight glow */
+            position: absolute;
+            top: 30%;  /* Adjust vertical placement */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1; /* Push behind the text */
+        }
     </style>
 </head>
 <body>
     <div class="top-section">
         <div class="quote-box" id="languageDisplay">
+            <span id="starsDisplay" class="stars"></span><br>
             Indegrients? Delivered. Now turn it into pure magic ✨
         </div>
     </div>
@@ -170,7 +183,7 @@
             const ratingDisplay = document.getElementById('ratingDisplay');
             if (sections.rating) {
                 ratingDisplay.innerHTML = `
-                    <div class="rating-badge">Score: ${sections.rating}/10</div>
+                    <div class="rating-badge">Score: ${sections.rating}/5</div>
                     <p class="card-text">Based on code quality assessment</p>
                 `;
             }
@@ -179,6 +192,8 @@
             if (sections.errors) {
                 errorsDisplay.innerHTML = sections.errors;
             }
+
+            
 
             const hintsDisplay = document.getElementById('hintsDisplay');
             if (sections.hints) {

@@ -3,11 +3,9 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "ejs": "^3.1.10",
-<<<<<<< HEAD
-    "express": "^4.21.2"
-=======
     "express": "^4.21.2",
+
     "flask":"^3.1.0"
->>>>>>> 5079b92 (Sync local repo with github repo)
+
   }
 }

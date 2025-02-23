@@ -3,155 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Landing Page</title>
+    <title>Hintellect</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            scroll-behavior: smooth; /* Enables smooth scrolling */
+            scroll-behavior: smooth;
         }
 
-        /* Hero Section */
         .masthead {
             background-color: #cda7f2;
             color: black;
             padding: 100px 0;
-            
         }
 
         .masthead h1 {
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             font-weight: bold;
             font-family: "monospace";
         }
 
         .masthead p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
         }
 
-        /* Enlarged Input Box */
         .input-box {
-            width: 60%;
-            max-width: 600px;
-            height: 150px; /* Increased height */
-            resize: vertical; /* Allow resizing */
+            width: 450px;
+            height: 300px;
+            resize: vertical;
             padding: 10px;
             font-size: 1rem;
         }
 
-        /* Features Section */
         .features-icons {
-            padding: 120px 0; /* Pushed section further down */
+            padding: 120px 0;
         }
 
         .features-icons-item {
+            position: relative;
+            overflow: hidden;
             padding: 20px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            transition: background 0.5s ease-in-out, transform 0.3s ease-in-out;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .card-description {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            color: black;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            max-width: 90%;
+            line-height: 1.5;
         }
 
         .features-icons-item:hover {
+            background: linear-gradient(135deg, #b57edc, #e0b0ff);
             transform: scale(1.05);
         }
 
-        .features-icons h3 {
-            font-size: 1.5rem;
-            margin-top: 15px;
+        .features-icons-item:hover .card-title {
+            transform: translateY(-20px);
+            opacity: 0;
         }
 
-        .features-icons p {
-            font-size: 1rem;
-            color: #555;
+        .features-icons-item:hover .card-description {
+            opacity: 1;
+            transform: translateY(0);
+            font-size: 1.1rem;
+            color: black;
         }
 
-        /* Responsive Styling */
         @media (max-width: 768px) {
             .input-box {
                 width: 80%;
                 height: 120px;
             }
         }
+
+        img {
+            width: 500px;
+            height: auto;
+            padding-bottom: 50px;
+            border-radius: 7px;
+        }
+
+        
     </style>
 </head>
 <body>
 
-    <!-- Generate More Leads Section -->
-    <header class="masthead text-center">
-        <div class="container">
-            <h1>HINTELLECT</h1>
-            <p>AI That Reviews, You That Thinks!</p>
-            <form action="/main" method="POST" class="d-flex flex-column align-items-center" onsubmit="redirectToCards(event)">
-                <textarea id="codeInput" class="form-control input-box mb-3" placeholder="Enter your code here..."></textarea>
-                <button type="submit" class="btn btn-light">Submit</button>
-            </form>
+<header class="masthead text-center">
+    <div class="container"><h1>HINTELLECT</h1>
+        <p>AI That Reviews, You That Thinks!</p>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="/man.png" alt="Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                
+                
+                <form action="/main" method="POST" class="d-flex flex-column align-items-center" onsubmit="redirectToCards(event)">
+                    <textarea id="codeInput" class="form-control input-box mb-3" placeholder="Enter your code here..."></textarea>
+                    <button id="button"type="submit" class="btn btn-light">Submit</button>
+                </form>
+                
+            </div>
+            
         </div>
-    </header>
-
-    <!-- Features Section -->
-    <section id="features" class="features-icons bg-light text-center">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="features-icons-item">
-                        <h3>CodeMeter</h3>
-                        <p>Get a smart score that evaluates your code's efficiency, readability and best practices</p>
-                    </div>
+    </div>
+</header>
+<section id="features" class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="features-icons-item">
+                    <h3 class="card-title">CodeMeter ⚡️</h3>
+                    <p class="card-description">Get a smart score that evaluates your code's efficiency, readability, and best practices.</p>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="features-icons-item">
-                        <h3>BugDetect</h3>
-                        <p>Spot syntax slip-ups and logical flaws with precision, backed by hints for seamless improvements</p>
-                    </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="features-icons-item">
+                    <h3 class="card-title">BugDetect 👾</h3>
+                    <p class="card-description">Spot syntax slip-ups and logical flaws with precision, backed by hints for seamless improvements.</p>
                 </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="features-icons-item">
-                        <h3>CodeBoost</h3>
-                        <p>Super-charge your code with performance enhancing suggestions to make it leaner and faster</p>
-                    </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="features-icons-item">
+                    <h3 class="card-title">CodeBoost 🚀</h3>
+                    <p class="card-description">Super-charge your code with performance-enhancing suggestions to make it leaner and faster.</p>
                 </div>
             </div>
         </div>
-    </section>
-    <script>
-        function submitCode(event) {
-            event.preventDefault(); // Prevents page reload
-    
-            const codeInput = document.querySelector(".input-box").value;
-    
-            if (!codeInput.trim()) {
-                alert("Please enter some code before submitting!");
-                return;
-            }
-    
-            fetch("/review", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code: codeInput })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.feedback) {
-                    const feedback = encodeURIComponent(JSON.stringify(data.feedback));
-                    window.location.href = `/main.html?feedback=${feedback}`; // Redirect to review page
-                } else {
-                    alert("Error: No feedback received from the server.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Something went wrong. Please try again.");
-            });
+    </div>
+</section>
+
+<script>
+    function submitCode(event) {
+        event.preventDefault();
+
+        const codeInput = document.querySelector(".input-box");
+
+        if (!codeInput.value.trim()) {
+            codeInput.placeholder = "Please enter some code before submitting...";
+            codeInput.value = "";
+            return;
         }
-    
-        document.querySelector("form").addEventListener("submit", submitCode);
-    </script>
+
+        fetch("/review", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ code: codeInput.value })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.feedback) {
+                const feedback = encodeURIComponent(JSON.stringify(data.feedback));
+                window.location.href = `main.html?feedback=${feedback}`;
+            } else {
+                alert("Error: No feedback received from the server.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
+        });
+    }
+
+    document.querySelector("form").addEventListener("submit", submitCode);
+</script>
 
 </body>
 </html>
